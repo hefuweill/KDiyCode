@@ -11,4 +11,18 @@
     <string name="email_or_username">Email/用户名</string>
     <string name="name_or_password">登录失败,用户名或密码错误</string>
 
+    <!--主页-->
+    <string name="news">news</string>
+    <string name="projects">projects</string>
+    <string name="topics">topics</string>
+
+    <!--用户资料-->
+    <string name="email">邮箱</string>
+    <string name="level">等级</string>
+    <string name="avatar">头像</string>
+    <string name="empty">&lt;空&gt;</string>
+    <string name="username">用户名</string>
+    <string name="create_at">创建时间</string>
+    <string name="interface_not_support">接口不支持修改</string>
+
 </resources>

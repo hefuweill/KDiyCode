@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultColor">
+
+    <include layout="@layout/toolbar" android:id="@+id/toolBar"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:layout_below="@id/toolBar"
+        android:divider="@android:drawable/divider_horizontal_bright">
+
+        <LinearLayout
+            android:id="@+id/ll_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/select_ripple"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/B1"
+                android:text="@string/avatar"/>
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <com.hefuwei.kdiycode.views.ItemProfile
+            android:id="@+id/item_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iTitle="@string/username" />
+
+        <com.hefuwei.kdiycode.views.ItemProfile
+            android:id="@+id/item_createAt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iTitle="@string/create_at" />
+
+        <com.hefuwei.kdiycode.views.ItemProfile
+            android:id="@+id/item_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iTitle="@string/email" />
+
+        <com.hefuwei.kdiycode.views.ItemProfile
+            android:id="@+id/item_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iTitle="@string/level" />
+
+
+    </LinearLayout>
+</RelativeLayout>

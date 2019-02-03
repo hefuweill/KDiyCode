@@ -6,7 +6,7 @@ import com.hefuwei.kdiycode.common.BaseView
 interface SplashContract {
 
     interface View : BaseView<Presenter> {
-        fun enterNextPage()
+        fun enterNextPage(gotoLogin: Boolean)
     }
 
     interface Presenter : BasePresenter

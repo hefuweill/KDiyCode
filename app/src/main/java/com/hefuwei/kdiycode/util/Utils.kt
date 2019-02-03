@@ -1,11 +1,16 @@
 package com.hefuwei.kdiycode.util
 
+import android.annotation.SuppressLint
 import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Toast
 import com.hefuwei.kdiycode.BuildConfig
 import com.hefuwei.kdiycode.DiyCode
 import com.hefuwei.kdiycode.Global
+import java.net.URL
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ShareUtils {
 
@@ -154,7 +159,9 @@ class UIUtils {
 
     companion object {
 
-        fun getString(resId: Int) = DiyCode.app.getString(resId)
+        fun getString(resId: Int) = DiyCode.app.getString(resId)!!
+
+        fun getDrawable(resId: Int) = DiyCode.app.getDrawable(resId)!!
 
         fun showShortToast(msg: String?) {
             Toast.makeText(DiyCode.app, msg, Toast.LENGTH_SHORT).show()
@@ -170,6 +177,68 @@ class UIUtils {
 
         fun showLongToast(resId: Int) {
             Toast.makeText(DiyCode.app, getString(resId), Toast.LENGTH_LONG).show()
+        }
+
+        fun dp2px(i: Int): Int = (i * DiyCode.app.resources.displayMetrics.density).toInt()
+
+
+        fun getHost(url: String) = URL(url).host!!
+
+        /**
+         * 解决部分图片无法显示的bug
+         */
+        fun replaceLargeAvatarToAvatar(source: String): String {
+            return source.replace("large_avatar", "avatar")
+        }
+
+        /**
+         * 格式化服务端返回的事件
+         */
+        fun formatTime(oldDateStr: String): String? {
+            val shortString: String
+            val time = dealDateFormat(oldDateStr)
+            val date = getDateByString(time) ?: return null
+            val now = Calendar.getInstance().timeInMillis
+            val delTime = (now - date.time) / 1000
+            shortString = when {
+                delTime > 365 * 24 * 60 * 60 -> "${(delTime / (365 * 24 * 60 * 60)).toInt()}年前"
+                delTime > 24 * 60 * 60 -> "${(delTime / (24 * 60 * 60)).toInt()}天前"
+                delTime > 60 * 60 -> "${(delTime / (60 * 60)).toInt()}小时前"
+                delTime > 60 -> "${(delTime / 60).toInt()}分前"
+                delTime > 1 -> "${delTime}秒前"
+                else -> "1秒前"
+            }
+            return shortString
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        private fun dealDateFormat(oldDateStr: String): String {
+            try {
+                val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                val date = df.parse(oldDateStr)
+                val df1 = SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.UK)
+                val date1 = df1.parse(date.toString())
+                val df2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                return df2.format(date1)
+            } catch (e: Exception) {
+                throw RuntimeException(e)
+            }
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        private fun getDateByString(time: String?): Date? {
+            var date: Date? = null
+            if (time == null) {
+                return null
+            }
+            val dateFormat = "yyyy-MM-dd HH:mm:ss"
+            val format = SimpleDateFormat(dateFormat)
+            try {
+                date = format.parse(time)
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+            return date
         }
     }
 }

@@ -4,4 +4,33 @@
     <color name="colorPrimaryDark">#488252</color>
     <color name="colorAccent">#5bd296</color>
     <color name="white">#ffffff</color>
+    <color name="gray">#c1c1c2</color>
+    <!--Activity默认背景色-->
+    <color name="defaultColor">#f2f2f2</color>
+    <!--主页Tab的未选中-->
+    <color name="tabNormal">#cfe6d4</color>
+
+    <!--中性色-->
+    <!--标题、正文-->
+    <color name="B1">#1a1a1a</color>
+    <!--辅助文字-->
+    <color name="B2">#666666</color>
+    <!--次级辅助文字-->
+    <color name="B3">#999999</color>
+    <!--占位符/模块分割线-->
+    <color name="G1">#bbbbbb</color>
+    <!--分割线-->
+    <color name="G2">#dcdcdc</color>
+    <!--按压 -->
+    <color name="G3">#e6e6e6</color>
+
+
+    <!--主色-->
+    <color name="Orange1">#ff571a</color>
+    <!--大面积 橙色-->
+    <color name="Orange2">#ff6933</color>
+    <!--图标色-->
+    <color name="Orange3">#ff7519</color>
+    <!--标签颜色-->
+    <color name="Orange4">#ffeee8</color>
 </resources>

@@ -4,12 +4,17 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import butterknife.ButterKnife
 import com.hefuwei.kdiycode.util.ActivityCollector
 import java.lang.ref.WeakReference
 
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
 
+    /**
+     * 确保setupView等只会被执行一次
+     */
+    private var isCreated: Boolean = false
     private var weakRefActivity: WeakReference<Activity>? = null
     protected var presenter: BasePresenter? = null
 
@@ -21,10 +26,14 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        presenter?.subscribe()
-        setupViews()
-        setupToolbar()
-        setupEvent()
+        if (!isCreated) {
+            ButterKnife.bind(this)
+            presenter?.subscribe()
+            setupViews()
+            setupToolbar()
+            setupEvent()
+            isCreated = true
+        }
     }
 
     override fun onDestroy() {

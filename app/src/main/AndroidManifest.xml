@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".pages.login.LoginActivity" />
         <activity android:name=".pages.web.WebViewActivity" />
+        <activity android:name=".pages.main.MainActivity" />
+        <activity android:name=".pages.user.UserProfileActivity" />
     </application>
 
 </manifest>

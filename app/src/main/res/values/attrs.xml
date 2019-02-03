@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagView">
+        <attr name="borderColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ItemProfile">
+        <attr name="iTitle" format="string" />
+        <attr name="iContent" format="string" />
+    </declare-styleable>
+</resources>

@@ -32,7 +32,7 @@ class MarqueeToolbar : Toolbar {
             textView.isFocusableInTouchMode = true
             // 这个属性得加上
             textView.isSelected = true
-            textView.translationX = -60f
+            textView.translationX = -40f
         } catch (e: Exception) {
             e.printStackTrace()
         }

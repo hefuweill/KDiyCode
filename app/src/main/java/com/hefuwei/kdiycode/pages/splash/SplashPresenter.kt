@@ -17,9 +17,9 @@ class SplashPresenter(val view: SplashContract.View) : SplashContract.Presenter 
     override fun subscribe() {
         if (DiyCode.isLogin) {
             disposable = DataRepository.init()
-                    .subscribe({ LogUtils.d(it); view.enterNextPage() }, { LogUtils.e(it.message)} )
+                    .subscribe({ view.enterNextPage(gotoLogin = false) }, { LogUtils.e(it.message)} )
         } else {
-            Thread { SystemClock.sleep(2000); view.enterNextPage() }.start()
+            Thread { SystemClock.sleep(2000); view.enterNextPage(gotoLogin = true) }.start()
         }
     }
 

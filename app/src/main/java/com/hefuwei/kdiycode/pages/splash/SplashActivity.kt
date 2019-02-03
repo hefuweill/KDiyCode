@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseActivity
 import com.hefuwei.kdiycode.pages.login.LoginActivity
+import com.hefuwei.kdiycode.pages.main.MainActivity
 
 class SplashActivity: BaseActivity(), SplashContract.View {
 
@@ -13,8 +14,12 @@ class SplashActivity: BaseActivity(), SplashContract.View {
         presenter = SplashPresenter(this)
     }
 
-    override fun enterNextPage() {
-        LoginActivity.actionStart(this)
+    override fun enterNextPage(gotoLogin: Boolean) {
+        if (gotoLogin) {
+            LoginActivity.actionStart(this)
+        } else {
+            MainActivity.actionStart(this)
+        }
         finish()
     }
 }
