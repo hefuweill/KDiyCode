@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <View
+        android:id="@+id/topPlaceHolder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_logo"/>
+
+    <View
+        android:id="@+id/middlePlaceHolder"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        app:helperTextTextColor="@color/white"
+        app:hintTextColor="@color/white">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:textSize="16sp"
+            android:background="@null"
+            android:inputType="text|textEmailAddress"
+            android:textColor="@color/white"
+            android:hint="@string/email_or_username"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/shape_horizontal_line"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/white"
+        app:helperTextTextColor="@color/white"
+        app:hintTextColor="@color/white">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:textSize="16sp"
+            android:background="@null"
+            android:hint="@string/password"
+            android:textColor="@color/white"
+            android:inputType="textPassword"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/shape_horizontal_line"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/shape_login"
+        android:text="@string/login"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:padding="12dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_register"
+        android:text="@string/click_register"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
