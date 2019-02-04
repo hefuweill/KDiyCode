@@ -2,6 +2,7 @@ package com.hefuwei.kdiycode.network
 
 import com.hefuwei.kdiycode.data.model.LoginModel
 import com.hefuwei.kdiycode.data.model.News
+import com.hefuwei.kdiycode.data.model.Node
 import com.hefuwei.kdiycode.data.model.UserInfoModel
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -22,7 +23,7 @@ interface DiyApi {
     fun logout()
 
     @FormUrlEncoded
-    @POST("oauth/token")
+    @POST("../../oauth/token")
     fun login(@Field("client_id") client_id: String, @Field("client_secret") client_secret: String,
                           @Field("grant_type") grant_type: String, @Field("username") username: String,
                           @Field("password") password: String): Observable<LoginModel>
@@ -32,5 +33,8 @@ interface DiyApi {
                     @Query("limit") limit: Int): Observable<List<News>>
 
     @GET("users/{login}.json")
-    fun getUserInfo(@Path("login") login: String): Observable<UserInfoModel>
+    fun userInfo(@Path("login") login: String): Observable<UserInfoModel>
+
+    @GET("news/nodes.json")
+    fun nodeList(): Observable<List<Node>>
 }

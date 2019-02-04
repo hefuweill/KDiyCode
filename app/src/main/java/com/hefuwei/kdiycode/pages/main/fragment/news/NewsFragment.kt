@@ -4,23 +4,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import butterknife.BindView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseFragment
+import com.hefuwei.kdiycode.data.model.Node
 import com.hefuwei.kdiycode.data.model.UserInfoModel
 import com.hefuwei.kdiycode.pages.user.UserProfileActivity
 import com.hefuwei.kdiycode.pages.web.WebViewActivity
+import com.hefuwei.kdiycode.util.UIUtils
+import com.hefuwei.kdiycode.views.ChooseNodeView
 
 class NewsFragment: BaseFragment(), NewsContract.View {
 
     @BindView(R.id.rv)
     lateinit var rv: RecyclerView
-    lateinit var adapter: NewsAdapter
+    @BindView(R.id.sr)
+    lateinit var sr: SwipeRefreshLayout
+    lateinit var tvError: TextView
+    private lateinit var adapter: NewsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_news, container, false)
@@ -31,12 +39,19 @@ class NewsFragment: BaseFragment(), NewsContract.View {
     override fun setupView() {
         super.setupView()
         adapter = NewsAdapter(R.layout.item_news, (presenter as NewsPresenter).dataList)
+        adapter.emptyView = View.inflate(context, R.layout.pager_error, null)
+        adapter.emptyView.visibility = View.INVISIBLE
+        tvError = adapter.emptyView.findViewById(R.id.tv_error)
         rv.layoutManager = LinearLayoutManager(context)
         rv.adapter = adapter
+        // 进入页面是时候先要是再刷新的
+        sr.isRefreshing = true
     }
 
     override fun setupEvent() {
         super.setupEvent()
+        tvError.setOnClickListener { (presenter as NewsPresenter).onRefresh() }
+        sr.setOnRefreshListener { (presenter as NewsPresenter).onRefresh() }
         adapter.onItemChildClickListener = object : OnItemChildClickListener(), BaseQuickAdapter.OnItemChildClickListener {
             override fun onSimpleItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 (presenter as NewsPresenter).getUserInfo(position)
@@ -47,18 +62,42 @@ class NewsFragment: BaseFragment(), NewsContract.View {
                 jumpToWebView((presenter as NewsPresenter).dataList[position].address!!)
             }
         }
+        adapter.setOnLoadMoreListener({ (presenter as NewsPresenter).onLoadMore() }, rv)
     }
 
     override fun jumpToUserProfile(info: UserInfoModel) {
         UserProfileActivity.actionStart(context!!, info)
     }
 
-    override fun notifyDataSetChanged() {
-        rv.adapter?.notifyDataSetChanged()
-    }
-
     private fun jumpToWebView(url: String) {
         WebViewActivity.actionStart(context!!, url)
+    }
+
+    override fun notifyDataSetChanged(hasMore: Boolean) {
+        sr.isRefreshing = false
+        adapter.notifyDataSetChanged()
+        if (hasMore) {
+            adapter.loadMoreComplete()
+        } else {
+            adapter.loadMoreEnd()
+        }
+    }
+
+    override fun notifyLoadFail() {
+        sr.isRefreshing = false
+        adapter.emptyView.visibility = View.VISIBLE
+        adapter.loadMoreFail()
+        UIUtils.showShortToast(R.string.load_fail)
+    }
+
+    override fun notifyNodesAcquire(nodes: List<Node>) {
+        val headerView = ChooseNodeView(context!!, nodes)
+        headerView.setOnTagClickListener(object : ChooseNodeView.OnTagClickListener{
+            override fun onTagClick(position: Int) {
+                (presenter as NewsPresenter).onNodeChange(position)
+            }
+        })
+        adapter.addHeaderView(headerView)
     }
 
 }

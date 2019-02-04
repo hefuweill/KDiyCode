@@ -5,6 +5,11 @@
     <color name="colorAccent">#5bd296</color>
     <color name="white">#ffffff</color>
     <color name="gray">#c1c1c2</color>
+
+    <!--ChooseNodeView使用-->
+    <color name="tag_normal">#AAB5C2</color>
+    <color name="tag_selected">#F87801</color>
+
     <!--Activity默认背景色-->
     <color name="defaultColor">#f2f2f2</color>
     <!--主页Tab的未选中-->

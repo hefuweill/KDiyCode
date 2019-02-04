@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.hefuwei.kdiycode.Global
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseActivity
+import com.hefuwei.kdiycode.pages.main.MainActivity
 import com.hefuwei.kdiycode.pages.web.WebViewActivity
 import com.hefuwei.kdiycode.util.UIUtils
 
@@ -73,6 +74,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun enterNextPage() {
         UIUtils.showShortToast(R.string.login_success)
+        MainActivity.actionStart(this)
     }
 
     override fun showNameError() {

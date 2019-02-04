@@ -29,7 +29,11 @@ class DataRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())!!
 
-        fun userInfo(login: String) = diyApi.getUserInfo(login)
+        fun userInfo(login: String) = diyApi.userInfo(login)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())!!
+
+        fun nodeList() = diyApi.nodeList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())!!
     }

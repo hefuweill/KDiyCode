@@ -7,3 +7,11 @@ fun Disposable?.safelyDispose() {
         this.dispose()
     }
 }
+
+fun ArrayList<Disposable?>.safelyDispose() {
+    for (i in this) {
+        if (i != null && !i.isDisposed) {
+            i.dispose()
+        }
+    }
+}

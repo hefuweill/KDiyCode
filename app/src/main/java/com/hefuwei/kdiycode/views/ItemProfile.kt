@@ -1,7 +1,6 @@
 package com.hefuwei.kdiycode.views
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -11,6 +10,9 @@ import butterknife.ButterKnife
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.util.UIUtils
 
+/**
+ * 用户资料的Item
+ */
 class ItemProfile @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
 
     @BindView(R.id.tv_title)

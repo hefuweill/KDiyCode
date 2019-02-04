@@ -18,7 +18,7 @@ class NewsAdapter(resId: Int, newsList: ArrayList<News>) : BaseQuickAdapter<News
                 .setText(R.id.tv_title, item.title)
                 .setText(R.id.tv_nodeName, item.node_name)
                 .setText(R.id.tv_host, UIUtils.getHost(item.address!!))
-                .setText(R.id.tv_time, UIUtils.formatTime(item.created_at!!))
+                .setText(R.id.tv_time, UIUtils.formatTime(item.   updated_at!!))
                 .addOnClickListener(R.id.iv)
         val imageView = helper.getView<ImageView>(R.id.iv)
         Glide.with(imageView)

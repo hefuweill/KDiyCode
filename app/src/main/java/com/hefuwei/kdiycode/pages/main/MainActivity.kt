@@ -3,7 +3,10 @@ package com.hefuwei.kdiycode.pages.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
@@ -24,6 +27,8 @@ class MainActivity : BaseActivity() {
     lateinit var tabLayout: TabLayout
     @BindView(R.id.toolbar)
     lateinit var toolbar: Toolbar
+    @BindView(R.id.drawer)
+    lateinit var drawer: DrawerLayout
     private val fragments: ArrayList<Fragment> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +55,13 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            android.R.id.home -> drawer.openDrawer(Gravity.LEFT)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

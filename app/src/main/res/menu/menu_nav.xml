@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/compose"
+            android:icon="@drawable/ic_publish"
+            android:title="@string/publishNews" />
+
+        <item
+            android:id="@+id/none"
+            android:title=""
+            android:visible="false"/> <!-- 此项item用于实现让其他item在选择之后不保留选中状态 -->
+
+    </group>
+
+</menu>

@@ -163,6 +163,8 @@ class UIUtils {
 
         fun getDrawable(resId: Int) = DiyCode.app.getDrawable(resId)!!
 
+        fun getColor(resId: Int) = DiyCode.app.resources.getColor(resId)
+
         fun showShortToast(msg: String?) {
             Toast.makeText(DiyCode.app, msg, Toast.LENGTH_SHORT).show()
         }
