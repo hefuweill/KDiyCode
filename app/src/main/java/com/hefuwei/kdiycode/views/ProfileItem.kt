@@ -13,7 +13,7 @@ import com.hefuwei.kdiycode.util.UIUtils
 /**
  * 用户资料的Item
  */
-class ItemProfile @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
+class ProfileItem @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
 
     @BindView(R.id.tv_title)
     lateinit var tvTitle: TextView
@@ -22,9 +22,9 @@ class ItemProfile @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     init {
         init()
-        val array = context.obtainStyledAttributes(attrs, R.styleable.ItemProfile)
-        tvTitle.text = array.getString(R.styleable.ItemProfile_iTitle)
-        tvContent.text = array.getString(R.styleable.ItemProfile_iContent)
+        val array = context.obtainStyledAttributes(attrs, R.styleable.ProfileItem)
+        tvTitle.text = array.getString(R.styleable.ProfileItem_iTitle)
+        tvContent.text = array.getString(R.styleable.ProfileItem_iContent)
         array.recycle()
     }
 

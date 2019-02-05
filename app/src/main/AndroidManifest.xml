@@ -24,6 +24,7 @@
         <activity android:name=".pages.web.WebViewActivity" />
         <activity android:name=".pages.main.MainActivity" />
         <activity android:name=".pages.user.UserProfileActivity" />
+        <activity android:name=".pages.choosenode.ChooseNodeActivity" />
     </application>
 
 </manifest>

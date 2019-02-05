@@ -46,10 +46,10 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="300dp"
+        android:id="@+id/nav"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_nav"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

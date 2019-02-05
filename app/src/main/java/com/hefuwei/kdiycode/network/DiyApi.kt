@@ -22,6 +22,9 @@ interface DiyApi {
     @DELETE("devices.json")
     fun logout()
 
+    @GET("users/me.json")
+    fun me(): Observable<UserInfoModel>
+
     @FormUrlEncoded
     @POST("../../oauth/token")
     fun login(@Field("client_id") client_id: String, @Field("client_secret") client_secret: String,
@@ -37,4 +40,9 @@ interface DiyApi {
 
     @GET("news/nodes.json")
     fun nodeList(): Observable<List<Node>>
+
+    @FormUrlEncoded
+    @POST("/api/v3/news.json")
+    fun createNews(@Field("title") title: String, @Field("address") address: String,
+                   @Field("node_id") id: Int): Observable<News>
 }

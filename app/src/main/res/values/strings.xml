@@ -18,7 +18,27 @@
     <string name="pager_empty">阿欧还是空的呢!</string>
     <string name="load_fail_click_retry">加载失败，点击重试</string>
     <string name="load_fail">加载失败</string>
+    <string name="load_me_fail">个人加载失败</string>
 
+    <!--新建News-->
+    <string name="create_news">新建News</string>
+    <string name="input_news_info">填写News信息</string>
+    <string name="news_title">News标题</string>
+    <string name="news_url">News链接</string>
+    <string name="required">*</string>
+    <string name="news_node">News类别</string>
+    <string name="close">关闭</string>
+    <string name="submit">提交</string>
+    <string name="required_news_title">News 标题不能为空</string>
+    <string name="required_news_url">News Url为空或不符合规则</string>
+    <string name="required_news_node">请选择Node类别</string>
+    <string name="create_news_success">创建News成功,等待审核</string>
+    <string name="create_news_fail">创建News失败</string>
+
+    <!--选择node-->
+    <string name="confirm">确定</string>
+    <string name="load_nodes_list_fail">加载Node列表失败</string>
+    <string name="please_choose">请选择</string>
 
     <!--抽屉-->
     <string name="publishNews">发布news</string>
@@ -31,5 +51,6 @@
     <string name="username">用户名</string>
     <string name="create_at">创建时间</string>
     <string name="interface_not_support">接口不支持修改</string>
+
 
 </resources>

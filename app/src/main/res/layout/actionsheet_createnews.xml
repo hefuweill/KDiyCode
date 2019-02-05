@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_root"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/input_news_info"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:padding="20dp"/>
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/Orange1"
+            android:text="@string/submit"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:showDividers="middle"
+        android:orientation="vertical"
+        android:divider="@android:drawable/divider_horizontal_bright">
+        <com.hefuwei.kdiycode.views.InputItem
+            android:id="@+id/input_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:required="true"
+            app:title="@string/news_title" />
+        <com.hefuwei.kdiycode.views.InputItem
+            android:id="@+id/input_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:required="true"
+            app:title="@string/news_url" />
+        <com.hefuwei.kdiycode.views.InputItem
+            android:id="@+id/input_node"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:required="true"
+            app:showArrow="true"
+            app:contentHint="请选择"
+            app:title="@string/news_node" />
+
+    </LinearLayout>
+
+</LinearLayout>

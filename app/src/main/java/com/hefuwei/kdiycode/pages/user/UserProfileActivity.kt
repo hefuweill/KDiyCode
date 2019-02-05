@@ -12,7 +12,7 @@ import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseActivity
 import com.hefuwei.kdiycode.data.model.UserInfoModel
 import com.hefuwei.kdiycode.util.UIUtils
-import com.hefuwei.kdiycode.views.ItemProfile
+import com.hefuwei.kdiycode.views.ProfileItem
 import com.hefuwei.kdiycode.views.MarqueeToolbar
 
 /**
@@ -21,13 +21,13 @@ import com.hefuwei.kdiycode.views.MarqueeToolbar
 class UserProfileActivity : BaseActivity(), UserProfileContract.View, View.OnClickListener {
 
     @BindView(R.id.item_username)
-    lateinit var itemUsername: ItemProfile
+    lateinit var itemUsername: ProfileItem
     @BindView(R.id.item_createAt)
-    lateinit var itemCreateAt: ItemProfile
+    lateinit var itemCreateAt: ProfileItem
     @BindView(R.id.item_email)
-    lateinit var itemEmail: ItemProfile
+    lateinit var itemEmail: ProfileItem
     @BindView(R.id.item_level)
-    lateinit var itemLevel: ItemProfile
+    lateinit var itemLevel: ProfileItem
     @BindView(R.id.iv)
     lateinit var iv: ImageView
     @BindView(R.id.ll_avatar)

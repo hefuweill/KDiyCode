@@ -12,4 +12,9 @@
         <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
 
+    <style name="ActionSheet">
+        <item name="android:windowEnterAnimation">@anim/actionsheet_enter</item>
+        <item name="android:windowExitAnimation">@anim/actionsheet_exit</item>
+    </style>
+
 </resources>

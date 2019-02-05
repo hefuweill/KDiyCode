@@ -39,25 +39,25 @@
                 android:layout_height="40dp" />
         </LinearLayout>
 
-        <com.hefuwei.kdiycode.views.ItemProfile
+        <com.hefuwei.kdiycode.views.ProfileItem
             android:id="@+id/item_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iTitle="@string/username" />
 
-        <com.hefuwei.kdiycode.views.ItemProfile
+        <com.hefuwei.kdiycode.views.ProfileItem
             android:id="@+id/item_createAt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iTitle="@string/create_at" />
 
-        <com.hefuwei.kdiycode.views.ItemProfile
+        <com.hefuwei.kdiycode.views.ProfileItem
             android:id="@+id/item_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iTitle="@string/email" />
 
-        <com.hefuwei.kdiycode.views.ItemProfile
+        <com.hefuwei.kdiycode.views.ProfileItem
             android:id="@+id/item_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
