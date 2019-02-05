@@ -10,7 +10,7 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.hefuwei.kdiycode.R
-import com.hefuwei.kdiycode.data.model.Node
+import com.hefuwei.kdiycode.data.model.NodeModel
 import com.hefuwei.kdiycode.pages.choosenode.ChooseNodeActivity
 import com.hefuwei.kdiycode.util.UIUtils
 import com.hefuwei.kdiycode.views.ActionSheet
@@ -29,7 +29,7 @@ class CreateNewsSheetManager(private val ctx: Activity,
     @BindView(R.id.input_node)
     lateinit var inputNode: InputItem
     private lateinit var sheet: ActionSheet
-    private var node: Node? = null
+    private var node: NodeModel? = null
 
     fun createNews() {
         node = null
@@ -54,7 +54,7 @@ class CreateNewsSheetManager(private val ctx: Activity,
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == RC_CHOOSE_NODE && data != null) {
-            node = data.getSerializableExtra(ChooseNodeActivity.NODE) as Node
+            node = data.getSerializableExtra(ChooseNodeActivity.NODE) as NodeModel
             inputNode.content = node!!.name
         }
     }

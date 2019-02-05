@@ -4,14 +4,14 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import com.hefuwei.kdiycode.R
-import com.hefuwei.kdiycode.data.model.Node
+import com.hefuwei.kdiycode.data.model.NodeModel
 import com.hefuwei.kdiycode.util.LogUtils
 import com.hefuwei.kdiycode.util.UIUtils
 
 /**
  * 选择node的自定义ViewGroup
  */
-class ChooseNodeView(context: Context, private val mDataSource: List<Node>) : ViewGroup(context), View.OnClickListener {
+class ChooseNodeView(context: Context, private val mDataSource: List<NodeModel>) : ViewGroup(context), View.OnClickListener {
 
     private var mCurrentSelect = 0
     private var mListener: OnTagClickListener? = null

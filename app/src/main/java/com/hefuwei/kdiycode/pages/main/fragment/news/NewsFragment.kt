@@ -14,7 +14,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseFragment
-import com.hefuwei.kdiycode.data.model.Node
+import com.hefuwei.kdiycode.data.model.NodeModel
 import com.hefuwei.kdiycode.data.model.UserInfoModel
 import com.hefuwei.kdiycode.pages.user.UserProfileActivity
 import com.hefuwei.kdiycode.pages.web.WebViewActivity
@@ -90,7 +90,7 @@ class NewsFragment: BaseFragment(), NewsContract.View {
         UIUtils.showShortToast(R.string.load_fail)
     }
 
-    override fun notifyNodesAcquire(nodes: List<Node>) {
+    override fun notifyNodesAcquire(nodes: List<NodeModel>) {
         val headerView = ChooseNodeView(context!!, nodes)
         headerView.setOnTagClickListener(object : ChooseNodeView.OnTagClickListener{
             override fun onTagClick(position: Int) {

@@ -2,7 +2,7 @@ package com.hefuwei.kdiycode.data.model
 
 import java.io.Serializable
 
-data class News(val updated_at: String? = null, val id: Int = 0,
+data class NewsModel(val updated_at: String? = null, val id: Int = 0,
            val created_at: String? = null, val node_name: String? = null, 
            val last_reply_user_id: Any? = null, val replies_count: Int = 0, 
            val address: String? = null, val replied_at: Any? = null, 

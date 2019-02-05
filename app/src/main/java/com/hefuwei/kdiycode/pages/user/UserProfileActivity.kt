@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.widget.Toolbar
 import butterknife.BindView
 import com.bumptech.glide.Glide
 import com.hefuwei.kdiycode.R
@@ -33,7 +34,7 @@ class UserProfileActivity : BaseActivity(), UserProfileContract.View, View.OnCli
     @BindView(R.id.ll_avatar)
     lateinit var llAvatar: LinearLayout
     @BindView(R.id.toolbar)
-    lateinit var toolbar: MarqueeToolbar
+    lateinit var toolbar: Toolbar
     lateinit var model: UserInfoModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

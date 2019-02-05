@@ -2,8 +2,8 @@ package com.hefuwei.kdiycode.pages.main.fragment.news
 
 import com.hefuwei.kdiycode.Main
 import com.hefuwei.kdiycode.data.DataRepository
-import com.hefuwei.kdiycode.data.model.News
-import com.hefuwei.kdiycode.data.model.Node
+import com.hefuwei.kdiycode.data.model.NewsModel
+import com.hefuwei.kdiycode.data.model.NodeModel
 import com.hefuwei.kdiycode.util.safelyDispose
 import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,8 +16,8 @@ class NewsPresenter(val view: NewsContract.View) : NewsContract.Presenter {
     private var pageIndex = 0
     private var nodeId = 1
     private var disposables: ArrayList<Disposable?> = ArrayList()
-    private lateinit var nodes: List<Node>
-    val dataList = ArrayList<News>()
+    private lateinit var nodes: List<NodeModel>
+    val dataList = ArrayList<NewsModel>()
 
     override fun subscribe() {
         getNodesAndNewsList()
@@ -40,8 +40,9 @@ class NewsPresenter(val view: NewsContract.View) : NewsContract.Presenter {
     }
 
     private fun getNodesAndNewsList() {
-        disposables.add(DataRepository.nodeList().flatMap(object : Function<List<Node>, ObservableSource<List<News>>> {
-            override fun apply(nodeList: List<Node>): ObservableSource<List<News>> {
+        disposables.add(DataRepository.nodeList().flatMap(object : Function<List<NodeModel>,
+                ObservableSource<List<NewsModel>>> {
+            override fun apply(nodeList: List<NodeModel>): ObservableSource<List<NewsModel>> {
                 nodes = nodeList
                 nodeId = nodeList[0].id
                 view.notifyNodesAcquire(nodes)

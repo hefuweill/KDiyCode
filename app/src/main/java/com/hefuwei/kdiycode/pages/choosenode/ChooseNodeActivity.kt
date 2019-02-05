@@ -15,7 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import butterknife.BindView
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseActivity
-import com.hefuwei.kdiycode.data.model.Node
+import com.hefuwei.kdiycode.data.model.NodeModel
 import com.hefuwei.kdiycode.pages.main.CreateNewsSheetManager
 import com.hefuwei.kdiycode.util.UIUtils
 
@@ -28,7 +28,7 @@ class ChooseNodeActivity : BaseActivity(), ChooseNodeContract.View,
     lateinit var rgLine2: RadioGroup
     @BindView(R.id.toolbar)
     lateinit var toolbar: Toolbar
-    private lateinit var nodes: List<Node>
+    private lateinit var nodes: List<NodeModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class ChooseNodeActivity : BaseActivity(), ChooseNodeContract.View,
         rgLine2.setOnCheckedChangeListener(this)
     }
 
-    override fun notifyLoadNodeListSuccess(nodes: List<Node>) {
+    override fun notifyLoadNodeListSuccess(nodes: List<NodeModel>) {
         this.nodes = nodes
         for (i in 0 until nodes.size / 2) {
             val node = nodes[i]
@@ -83,7 +83,7 @@ class ChooseNodeActivity : BaseActivity(), ChooseNodeContract.View,
             rb.text = node.name
             rgLine1.addView(rb, params)
         }
-        val selectNode = intent.getSerializableExtra(SELECTED_NODE) as Node?
+        val selectNode = intent.getSerializableExtra(SELECTED_NODE) as NodeModel?
         if (nodes.contains(selectNode)) {
             val index = nodes.indexOf(selectNode)
             if (index < nodes.size / 2) {
@@ -128,7 +128,7 @@ class ChooseNodeActivity : BaseActivity(), ChooseNodeContract.View,
         const val NODE = "node"
         const val SELECTED_NODE = "selected_node"
 
-        fun actionStart(ctx: Context, node: Node?) {
+        fun actionStart(ctx: Context, node: NodeModel?) {
             val intent = Intent(ctx, ChooseNodeActivity::class.java)
             intent.putExtra(SELECTED_NODE, node)
             (ctx as Activity).startActivityForResult(intent, CreateNewsSheetManager.RC_CHOOSE_NODE)
