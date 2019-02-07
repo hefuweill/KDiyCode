@@ -75,6 +75,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun enterNextPage() {
         UIUtils.showShortToast(R.string.login_success)
         MainActivity.actionStart(this)
+        finish()
     }
 
     override fun showNameError() {

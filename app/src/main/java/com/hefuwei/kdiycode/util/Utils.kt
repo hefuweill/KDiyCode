@@ -1,6 +1,8 @@
 package com.hefuwei.kdiycode.util
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Toast
@@ -159,11 +161,22 @@ class UIUtils {
 
     companion object {
 
+        private val mainH: Handler = Handler(Looper.getMainLooper()) { true }
+
         fun getString(resId: Int) = DiyCode.app.getString(resId)!!
 
         fun getDrawable(resId: Int) = DiyCode.app.getDrawable(resId)!!
 
         fun getColor(resId: Int) = DiyCode.app.resources.getColor(resId)
+
+        fun runOnUIThread(runnable: Runnable) {
+            if (Looper.getMainLooper() != Looper.myLooper()) {
+                // sub thread
+                mainH.post(runnable)
+            } else {
+                runnable.run()
+            }
+        }
 
         fun showShortToast(msg: String?) {
             Toast.makeText(DiyCode.app, msg, Toast.LENGTH_SHORT).show()

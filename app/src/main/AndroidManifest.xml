@@ -3,6 +3,8 @@
     package="com.hefuwei.kdiycode">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="false"
@@ -22,9 +24,12 @@
         </activity>
         <activity android:name=".pages.login.LoginActivity" />
         <activity android:name=".pages.web.WebViewActivity" />
-        <activity android:name=".pages.main.MainActivity" />
+        <activity android:name=".pages.main.MainActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".pages.user.UserProfileActivity" />
         <activity android:name=".pages.choosenode.ChooseNodeActivity" />
+        <activity android:name=".pages.main.fragment.projects.ProjectFragment" />
+        <activity android:name=".pages.myfavorite.MyFavoriteActivity" />
     </application>
 
 </manifest>

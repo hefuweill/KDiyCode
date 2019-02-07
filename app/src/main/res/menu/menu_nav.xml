@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_publish"
         android:title="@string/publishNews" />
 
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/myFavorite" />
+
 </menu>

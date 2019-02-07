@@ -11,6 +11,7 @@ class DiyCode {
     companion object {
 
         var isLogin = false
+        var uid = 0
         var token: String? = null
         lateinit var app: Application
 
@@ -22,10 +23,14 @@ class DiyCode {
             refreshLoginState()
         }
 
+        /**
+         * 在初始化和登录成功时回调
+         */
         fun refreshLoginState() {
             val isTokenExpired = isTokenExpired()
             if (!isTokenExpired) {
                 token = ShareUtils.read(Auth.TOKEN, "")
+                uid = ShareUtils.read(Auth.UID, 0)
                 isLogin = true
             } else {
                 token = null

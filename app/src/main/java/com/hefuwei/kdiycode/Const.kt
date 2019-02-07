@@ -26,6 +26,7 @@ class Auth {
         const val CREATE_AT = "CREATE_AT"
         const val EXPIRES_IN = "EXPIRES_IN"
         const val UID = "UID"
+        const val USER_NAME = "usernam1"
     }
 }
 
@@ -34,6 +35,6 @@ class Main {
     companion object {
         val TABS = arrayOf(UIUtils.getString(R.string.news),
                 UIUtils.getString(R.string.projects), UIUtils.getString(R.string.topics))
-        const val PAGESIZE = 20
+        const val PAGE_SIZE = 20
     }
 }

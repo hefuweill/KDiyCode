@@ -25,6 +25,7 @@ import com.hefuwei.kdiycode.common.BaseActivity
 import com.hefuwei.kdiycode.data.model.UserInfoModel
 import com.hefuwei.kdiycode.pages.main.adapter.FragmentAdapter
 import com.hefuwei.kdiycode.pages.main.fragment.news.NewsFragment
+import com.hefuwei.kdiycode.pages.myfavorite.MyFavoriteActivity
 import com.hefuwei.kdiycode.pages.user.UserProfileActivity
 import com.hefuwei.kdiycode.util.UIUtils
 
@@ -47,11 +48,16 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
         presenter = MainPresenter(this)
         mainPresenter = presenter as MainPresenter
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // 每次页面显示都关闭抽屉
+        drawer.closeDrawer(Gravity.LEFT)
     }
 
     override fun setupViews() {
@@ -80,6 +86,10 @@ class MainActivity : BaseActivity(), MainContract.View {
                 R.id.publish -> {
                     drawer.closeDrawer(Gravity.LEFT)
                     showCreateNewsSheet()
+                    true
+                }
+                R.id.favorite -> {
+                    MyFavoriteActivity.actionStart(this)
                     true
                 }
                 else -> false

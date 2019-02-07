@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.webkit.WebChromeClient
@@ -16,11 +17,12 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseActivity
+import com.hefuwei.kdiycode.util.UIUtils
 
 /**
  * 该App，所有webView的承载类
  */
-class WebViewActivity: BaseActivity() {
+class WebViewActivity: BaseActivity(), WebViewContract.View {
 
     @BindView(R.id.wv)
     lateinit var webView: WebView
@@ -33,6 +35,7 @@ class WebViewActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webview)
         ButterKnife.bind(this)
+        presenter = WebViewPresenter(this)
     }
 
     override fun setupViews() {
@@ -69,9 +72,15 @@ class WebViewActivity: BaseActivity() {
         webView.settings.javaScriptEnabled = true
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_webview, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             android.R.id.home -> finish()
+            R.id.favorite -> (presenter as WebViewPresenter).addMyFavorite(webView.title, webView.url)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -82,6 +91,10 @@ class WebViewActivity: BaseActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onAddFavoriteSuccess() {
+        UIUtils.showShortToast(R.string.save_success)
     }
 
     companion object {

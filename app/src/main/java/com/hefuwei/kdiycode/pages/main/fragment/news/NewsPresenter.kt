@@ -28,14 +28,14 @@ class NewsPresenter(val view: NewsContract.View) : NewsContract.Presenter {
     }
 
     private fun getNewsList() {
-        disposables.add(DataRepository.newsList(nodeId, Main.PAGESIZE * pageIndex, Main.PAGESIZE)
+        disposables.add(DataRepository.newsList(nodeId, Main.PAGE_SIZE * pageIndex, Main.PAGE_SIZE)
                 .subscribe({
                     // 如果是加载第一页那么就先清除list，不是第一页就是加载更多直接拼接
                     if (pageIndex == 0) {
                         dataList.clear()
                     }
                     dataList.addAll(it)
-                    view.notifyDataSetChanged(it.size == Main.PAGESIZE)
+                    view.notifyDataSetChanged(it.size == Main.PAGE_SIZE)
                 }, { view.notifyLoadFail() }))
     }
 
@@ -46,13 +46,13 @@ class NewsPresenter(val view: NewsContract.View) : NewsContract.Presenter {
                 nodes = nodeList
                 nodeId = nodeList[0].id
                 view.notifyNodesAcquire(nodes)
-                return DataRepository.newsList(nodeId, Main.PAGESIZE * pageIndex, Main.PAGESIZE)
+                return DataRepository.newsList(nodeId, Main.PAGE_SIZE * pageIndex, Main.PAGE_SIZE)
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     dataList.addAll(it)
-                    view.notifyDataSetChanged(it.size == Main.PAGESIZE)
+                    view.notifyDataSetChanged(it.size == Main.PAGE_SIZE)
                 }, { view.notifyLoadFail() }))
     }
 

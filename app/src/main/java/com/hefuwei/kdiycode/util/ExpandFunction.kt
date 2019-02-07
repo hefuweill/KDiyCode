@@ -15,3 +15,16 @@ fun ArrayList<Disposable?>.safelyDispose() {
         }
     }
 }
+
+fun <T> ArrayList<T>.removeElementIf(lambda: (T) -> Boolean): Boolean {
+    var removed = false
+    val iterator = this.iterator()
+    while (iterator.hasNext()) {
+        val data = iterator.next()
+        if (lambda(data)) {
+            iterator.remove()
+            removed = true
+        }
+    }
+    return removed
+}

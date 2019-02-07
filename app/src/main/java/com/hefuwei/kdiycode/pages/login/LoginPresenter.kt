@@ -9,13 +9,13 @@ import io.reactivex.disposables.Disposable
 
 class LoginPresenter(val view: LoginContract.View) : LoginContract.Presenter {
 
-    private var disposable: Disposable? = null
+    private var disposables: ArrayList<Disposable?> = ArrayList()
 
     override fun subscribe() {
     }
 
     override fun unsubscribe() {
-        disposable.safelyDispose()
+        disposables.safelyDispose()
     }
 
     override fun login(name: String, password: String) {
@@ -26,14 +26,20 @@ class LoginPresenter(val view: LoginContract.View) : LoginContract.Presenter {
             view.showPasswordError()
             return
         }
-        disposable = DataRepository.login(name, password)
+        disposables.add(DataRepository.login(name, password)
                 .subscribe({
                     ShareUtils.save(Auth.CREATE_AT, it.created_at)
                     ShareUtils.save(Auth.EXPIRES_IN, it.expires_in)
                     ShareUtils.save(Auth.TOKEN, it.access_token)
                     ShareUtils.save(Auth.UID, it.uid)
                     DiyCode.refreshLoginState()
+                    saveLoginUserInfo(name, password, it.uid)
                     view.enterNextPage()
-                }, { view.onLoginFail(it.message) })
+                }, { view.onLoginFail(it.message) }))
+    }
+
+    private fun saveLoginUserInfo(name: String, password: String, uid: Int) {
+        disposables.add(DataRepository.saveLoginUserInfo(name, password, uid)
+                .subscribe({}, {}))
     }
 }

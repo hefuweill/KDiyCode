@@ -14,7 +14,7 @@ open class BaseActivity : AppCompatActivity() {
     /**
      * 确保setupView等只会被执行一次
      */
-    private var isCreated: Boolean = false
+    protected var isCreated: Boolean = false
     private var weakRefActivity: WeakReference<Activity>? = null
     protected var presenter: BasePresenter? = null
 
