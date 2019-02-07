@@ -27,8 +27,13 @@ class TagView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
         array.recycle()
     }
 
-    fun setBackgroudColor(color: Int) {
+    fun setBGColor(color: Int) {
         val drawable = background as GradientDrawable
         drawable.setColor(color)
+    }
+
+    fun setBorderColor(color: Int) {
+        val drawable = background as GradientDrawable
+        drawable.setStroke(1, color)
     }
 }

@@ -12,6 +12,9 @@ class MyFavoriteAdapter(resId: Int, favoriteList: List<DBMyFavoriteModel>):
     override fun convert(helper: BaseViewHolder?, item: DBMyFavoriteModel?) {
         helper?.setText(R.id.tv_title, item?.title)
         helper?.setText(R.id.tv_time, "最后修改时间：${Date(item?.time!!).toLocaleString()}")
+        val params = helper?.itemView?.layoutParams
+        params?.width = -1
+        helper?.itemView?.layoutParams = params
     }
 
 }

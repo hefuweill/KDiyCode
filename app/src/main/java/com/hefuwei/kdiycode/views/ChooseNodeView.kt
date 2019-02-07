@@ -1,6 +1,7 @@
 package com.hefuwei.kdiycode.views
 
 import android.content.Context
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import com.hefuwei.kdiycode.R
@@ -22,12 +23,13 @@ class ChooseNodeView(context: Context, private val mDataSource: List<NodeModel>)
             val tag = TagView(getContext())
             tag.text = node.name
             tag.textSize = UIUtils.dp2px(5).toFloat()
-            tag.setTextColor(UIUtils.getColor(R.color.white))
+            tag.setTextColor(Color.WHITE)
+            tag.setBorderColor(Color.WHITE)
             tag.setOnClickListener(this)
             if (i == mCurrentSelect) {
-                tag.setBackgroudColor(UIUtils.getColor(R.color.tag_selected))
+                tag.setBGColor(UIUtils.getColor(R.color.tag_selected))
             } else {
-                tag.setBackgroudColor(UIUtils.getColor(R.color.tag_normal))
+                tag.setBGColor(UIUtils.getColor(R.color.tag_normal))
             }
             addView(tag)
         }
@@ -94,10 +96,10 @@ class ChooseNodeView(context: Context, private val mDataSource: List<NodeModel>)
 
     private fun changeSelectedItem(newPosition: Int) {
         val oldTag = getChildAt(mCurrentSelect) as TagView
-        oldTag.setBackgroudColor(UIUtils.getColor(R.color.tag_normal))
+        oldTag.setBGColor(UIUtils.getColor(R.color.tag_normal))
 
         val newTag = getChildAt(newPosition) as TagView
-        newTag.setBackgroudColor(UIUtils.getColor(R.color.tag_selected))
+        newTag.setBGColor(UIUtils.getColor(R.color.tag_selected))
     }
 
     interface OnTagClickListener {

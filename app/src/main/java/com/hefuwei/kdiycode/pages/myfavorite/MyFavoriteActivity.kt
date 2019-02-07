@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
+import com.hefuwei.kdiycode.Global
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseActivity
 import com.hefuwei.kdiycode.pages.web.WebViewActivity
+import com.hefuwei.kdiycode.util.ShareUtils
 import com.hefuwei.kdiycode.util.UIUtils
 
 /**
@@ -44,7 +46,7 @@ class MyFavoriteActivity : BaseActivity(), MyFavoriteContract.View {
         rv.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
-        val itemTouchHelper = ItemTouchHelper(MItemTouchCallback(object : OnItemChangeListener {
+        val itemTouchHelper = ItemTouchHelper(MItemTouchCallback(object : MItemTouchCallback.OnItemChangeListener {
             override fun onItemRemove(position: Int) {
                 (presenter as MyFavoritePresenter).deleteFavorite(position)
             }
@@ -83,6 +85,12 @@ class MyFavoriteActivity : BaseActivity(), MyFavoriteContract.View {
 
     override fun notifyDataSetChanged() {
         adapter.notifyDataSetChanged()
+        val guided = ShareUtils.read(Global.FAVORITE, false)
+        if (!guided) {
+            rv.post { FavoriteGuideDialog(this, rv.getChildAt(0))
+                    .show() }
+            ShareUtils.save(Global.FAVORITE, true)
+        }
     }
 
     override fun notifyDeleteResult(isSuccess: Boolean) = if (isSuccess) {

@@ -54,12 +54,6 @@ class MainActivity : BaseActivity(), MainContract.View {
         mainPresenter = presenter as MainPresenter
     }
 
-    override fun onStart() {
-        super.onStart()
-        // 每次页面显示都关闭抽屉
-        drawer.closeDrawer(Gravity.LEFT)
-    }
-
     override fun setupViews() {
         for (i in Main.TABS) {
             tabLayout.addTab(tabLayout.newTab())
@@ -82,6 +76,7 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun setupEvent() {
         nav.setNavigationItemSelectedListener {
+            drawer.closeDrawer(Gravity.LEFT)
             when(it.itemId) {
                 R.id.publish -> {
                     drawer.closeDrawer(Gravity.LEFT)
