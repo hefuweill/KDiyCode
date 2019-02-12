@@ -27,12 +27,14 @@ class NewsFragment: BaseFragment(), NewsContract.View {
     lateinit var rv: RecyclerView
     @BindView(R.id.sr)
     lateinit var sr: SwipeRefreshLayout
-    lateinit var tvError: TextView
+    private lateinit var tvError: TextView
     private lateinit var adapter: NewsAdapter
+    private lateinit var newsPresenter: NewsPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_news, container, false)
         presenter = NewsPresenter(this)
+        newsPresenter = presenter as NewsPresenter
         return rootView
     }
 
@@ -50,11 +52,11 @@ class NewsFragment: BaseFragment(), NewsContract.View {
 
     override fun setupEvent() {
         super.setupEvent()
-        tvError.setOnClickListener { (presenter as NewsPresenter).onRefresh() }
-        sr.setOnRefreshListener { (presenter as NewsPresenter).onRefresh() }
+        tvError.setOnClickListener { newsPresenter.onRefresh() }
+        sr.setOnRefreshListener { newsPresenter.onRefresh() }
         adapter.onItemChildClickListener = object : OnItemChildClickListener(), BaseQuickAdapter.OnItemChildClickListener {
             override fun onSimpleItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                (presenter as NewsPresenter).getUserInfo(position)
+                newsPresenter.getUserInfo(position)
             }
         }
         adapter.onItemClickListener = object : OnItemClickListener(), BaseQuickAdapter.OnItemClickListener {
@@ -62,7 +64,7 @@ class NewsFragment: BaseFragment(), NewsContract.View {
                 jumpToWebView((presenter as NewsPresenter).dataList[position].address!!)
             }
         }
-        adapter.setOnLoadMoreListener({ (presenter as NewsPresenter).onLoadMore() }, rv)
+        adapter.setOnLoadMoreListener({ newsPresenter.onLoadMore() }, rv)
     }
 
     override fun jumpToUserProfile(info: UserInfoModel) {
@@ -94,7 +96,7 @@ class NewsFragment: BaseFragment(), NewsContract.View {
         val headerView = ChooseNodeView(context!!, nodes)
         headerView.setOnTagClickListener(object : ChooseNodeView.OnTagClickListener{
             override fun onTagClick(position: Int) {
-                (presenter as NewsPresenter).onNodeChange(position)
+                newsPresenter.onNodeChange(position)
             }
         })
         adapter.addHeaderView(headerView)

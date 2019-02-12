@@ -152,5 +152,9 @@ class DataRepository {
         fun createNews(title: String, address: String, id: Int) = diyApi.createNews(title, address, id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())!!
+
+        fun sites() = diyApi.sites()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())!!
     }
 }

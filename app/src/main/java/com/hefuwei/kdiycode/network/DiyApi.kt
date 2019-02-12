@@ -39,7 +39,10 @@ interface DiyApi {
     fun nodeList(): Observable<List<NodeModel>>
 
     @FormUrlEncoded
-    @POST("/api/v3/news.json")
+    @POST("news.json")
     fun createNews(@Field("title") title: String, @Field("address") address: String,
                    @Field("node_id") id: Int): Observable<NewsModel>
+
+    @GET("sites.json")
+    fun sites(): Observable<List<SiteModel>>
 }

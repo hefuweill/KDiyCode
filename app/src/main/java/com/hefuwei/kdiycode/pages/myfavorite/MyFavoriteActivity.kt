@@ -32,16 +32,18 @@ class MyFavoriteActivity : BaseActivity(), MyFavoriteContract.View {
     @BindView(R.id.rv)
     lateinit var rv: RecyclerView
     private lateinit var adapter: MyFavoriteAdapter
+    private lateinit var favoritePresenter: MyFavoritePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myfavorite)
         presenter = MyFavoritePresenter(this)
+        favoritePresenter = presenter as MyFavoritePresenter
     }
 
     override fun setupViews() {
         super.setupViews()
-        adapter =  MyFavoriteAdapter(R.layout.item_myfavorite, (presenter as MyFavoritePresenter).favorites)
+        adapter =  MyFavoriteAdapter(R.layout.item_myfavorite, favoritePresenter.favorites)
         adapter.emptyView = View.inflate(this, R.layout.pager_empty, null)
         rv.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rv.layoutManager = LinearLayoutManager(this)
@@ -73,7 +75,7 @@ class MyFavoriteActivity : BaseActivity(), MyFavoriteContract.View {
     override fun setupEvent() {
         super.setupEvent()
         adapter.setOnItemClickListener { _, _, position ->
-            WebViewActivity.actionStart(this, (presenter as MyFavoritePresenter).favorites[position].url)
+            WebViewActivity.actionStart(this, favoritePresenter.favorites[position].url)
         }
         adapter.setOnItemLongClickListener { _, _, position ->
             val clipBoard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
@@ -86,7 +88,7 @@ class MyFavoriteActivity : BaseActivity(), MyFavoriteContract.View {
     override fun notifyDataSetChanged() {
         adapter.notifyDataSetChanged()
         val guided = ShareUtils.read(Global.FAVORITE, false)
-        if (!guided) {
+        if (!guided && favoritePresenter.favorites.size > 0) {
             rv.post { FavoriteGuideDialog(this, rv.getChildAt(0))
                     .show() }
             ShareUtils.save(Global.FAVORITE, true)

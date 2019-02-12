@@ -1,11 +1,11 @@
 package com.hefuwei.kdiycode.pages.main
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -25,10 +25,12 @@ import com.hefuwei.kdiycode.common.BaseActivity
 import com.hefuwei.kdiycode.data.model.UserInfoModel
 import com.hefuwei.kdiycode.pages.main.adapter.FragmentAdapter
 import com.hefuwei.kdiycode.pages.main.fragment.news.NewsFragment
+import com.hefuwei.kdiycode.pages.main.fragment.sites.SitesFragment
 import com.hefuwei.kdiycode.pages.myfavorite.MyFavoriteActivity
 import com.hefuwei.kdiycode.pages.user.UserProfileActivity
 import com.hefuwei.kdiycode.util.UIUtils
 
+@SuppressLint("RtlHardcoded")
 class MainActivity : BaseActivity(), MainContract.View {
 
     @BindView(R.id.vp)
@@ -59,6 +61,7 @@ class MainActivity : BaseActivity(), MainContract.View {
             tabLayout.addTab(tabLayout.newTab())
             fragments.add(when(i) {
                 UIUtils.getString(R.string.news) -> NewsFragment()
+                UIUtils.getString(R.string.sites) -> SitesFragment()
                 else -> NewsFragment()
             })
         }
@@ -103,6 +106,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         UIUtils.showShortToast(R.string.load_me_fail)
     }
 
+
     override fun notifyMeInfoAcquire(info: UserInfoModel) {
         val header = nav.inflateHeaderView(R.layout.nav_header)
         val icAvatar = header.findViewById<ImageView>(R.id.ic_avatar)
@@ -111,7 +115,10 @@ class MainActivity : BaseActivity(), MainContract.View {
                 .apply(RequestOptions.bitmapTransform(CircleCrop()))
                 .into(icAvatar)
         tvLogin.text = info.login
-        icAvatar.setOnClickListener { UserProfileActivity.actionStart(this, info) }
+        icAvatar.setOnClickListener {
+            drawer.closeDrawer(Gravity.LEFT)
+            UserProfileActivity.actionStart(this, info)
+        }
     }
 
     override fun notifyCreateNewsSuccess() {

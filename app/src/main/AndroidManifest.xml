@@ -12,6 +12,7 @@
         android:label="@string/app_name"
         android:name=".DiyCodeApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/DiyCode">
         <activity android:name="com.hefuwei.kdiycode.pages.splash.SplashActivity"
@@ -28,8 +29,13 @@
             android:launchMode="singleTask" />
         <activity android:name=".pages.user.UserProfileActivity" />
         <activity android:name=".pages.choosenode.ChooseNodeActivity" />
-        <activity android:name=".pages.main.fragment.projects.ProjectFragment" />
+        <activity android:name=".pages.main.fragment.projects.ProjectsFragment" />
         <activity android:name=".pages.myfavorite.MyFavoriteActivity" />
+
+        <activity android:name="com.hefuwei.download.TestActivity">
+        </activity>
+        <service android:name="com.hefuwei.download.DownloadService" />
+
     </application>
 
 </manifest>

@@ -34,8 +34,8 @@ class Auth {
 class Main {
 
     companion object {
-        val TABS = arrayOf(UIUtils.getString(R.string.news),
-                UIUtils.getString(R.string.projects), UIUtils.getString(R.string.topics))
+        val TABS = arrayOf(UIUtils.getString(R.string.sites), UIUtils.getString(R.string.news),
+                UIUtils.getString(R.string.topics))
         const val PAGE_SIZE = 20
     }
 }
