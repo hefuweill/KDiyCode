@@ -24,8 +24,8 @@
 ##### 新建News
 * 通过输入标题、链接、结点(进行选择)来新建一个News(需要审核)
 
-![CNews0](mdres/cnews0.jpg)
-![CNews0](mdres/cnews1.jpg)
+![CNews0](mdres/cNews0.jpg)
+![CNews0](mdres/cNews1.jpg)
 
 ##### 查看个人资料
 * 查看当前登录用户的资料，但是接口不支持修改用户的信息
