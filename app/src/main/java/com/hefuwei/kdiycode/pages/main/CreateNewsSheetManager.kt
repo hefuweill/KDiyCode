@@ -52,7 +52,7 @@ class CreateNewsSheetManager(private val ctx: Activity,
         sheet.dismiss()
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    fun onActivityResult(requestCode: Int, data: Intent?) {
         if (requestCode == RC_CHOOSE_NODE && data != null) {
             node = data.getSerializableExtra(ChooseNodeActivity.NODE) as NodeModel
             inputNode.content = node!!.name

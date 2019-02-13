@@ -99,7 +99,7 @@ class ChooseNodeActivity : BaseActivity(), ChooseNodeContract.View,
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.choose_node_menu, menu)
+        menuInflater.inflate(R.menu.menu_choose_node, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

@@ -34,6 +34,10 @@
 
         <activity android:name="com.hefuwei.download.TestActivity">
         </activity>
+        <activity android:name=".pages.choosepic.ChoosePicActivity" />
+        <activity android:name=".pages.choosepic.PreviewPicActivity" />
+        <activity android:name=".pages.uploadimg.UploadImgActivity" />
+
         <service android:name="com.hefuwei.download.DownloadService" />
 
     </application>

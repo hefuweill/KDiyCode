@@ -2,6 +2,7 @@ package com.hefuwei.kdiycode.network
 
 import com.hefuwei.kdiycode.data.model.*
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface DiyApi {
@@ -45,4 +46,8 @@ interface DiyApi {
 
     @GET("sites.json")
     fun sites(): Observable<List<SiteModel>>
+
+    @Multipart
+    @POST("/api/v3/photos.json")
+    fun uploadImage(@Part file: MultipartBody.Part): Observable<Any>
 }

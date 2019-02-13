@@ -23,10 +23,12 @@ import com.hefuwei.kdiycode.Main
 import com.hefuwei.kdiycode.R
 import com.hefuwei.kdiycode.common.BaseActivity
 import com.hefuwei.kdiycode.data.model.UserInfoModel
+import com.hefuwei.kdiycode.pages.choosepic.ChoosePicActivity
 import com.hefuwei.kdiycode.pages.main.adapter.FragmentAdapter
 import com.hefuwei.kdiycode.pages.main.fragment.news.NewsFragment
 import com.hefuwei.kdiycode.pages.main.fragment.sites.SitesFragment
 import com.hefuwei.kdiycode.pages.myfavorite.MyFavoriteActivity
+import com.hefuwei.kdiycode.pages.uploadimg.UploadImgActivity
 import com.hefuwei.kdiycode.pages.user.UserProfileActivity
 import com.hefuwei.kdiycode.util.UIUtils
 
@@ -90,6 +92,10 @@ class MainActivity : BaseActivity(), MainContract.View {
                     MyFavoriteActivity.actionStart(this)
                     true
                 }
+                R.id.upload -> {
+                    UploadImgActivity.actionStart(this)
+                    true
+                }
                 else -> false
             }
         }
@@ -132,7 +138,7 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        sheetManager.onActivityResult(requestCode, resultCode, data)
+        sheetManager.onActivityResult(requestCode, data)
     }
 
     private fun showCreateNewsSheet() {

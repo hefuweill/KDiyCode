@@ -13,6 +13,7 @@ import io.reactivex.Emitter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MultipartBody
 import org.litepal.LitePal
 import java.util.*
 import kotlin.collections.ArrayList
@@ -154,6 +155,10 @@ class DataRepository {
                 .observeOn(AndroidSchedulers.mainThread())!!
 
         fun sites() = diyApi.sites()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())!!
+
+        fun uploadImg(file: MultipartBody.Part) = diyApi.uploadImage(file)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())!!
     }

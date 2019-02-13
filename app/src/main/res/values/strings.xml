@@ -51,6 +51,9 @@
     <!--抽屉-->
     <string name="publishNews">发布news</string>
     <string name="myFavorite">我的收藏</string>
+    <string name="upload_pic">上传图片</string>
+    <string name="small_tools">小工具</string>
+    <string name="utility_fun">实用功能</string>
 
     <!--用户资料-->
     <string name="email">邮箱</string>
@@ -71,7 +74,20 @@
     <string name="delete_success">删除成功</string>
     <string name="delete_fail">删除失败</string>
 
+    <!--上传照片-->
+    <string name="preview">预览</string>
+    <string name="image">image</string>
+    <string name="all_pic">所有图片</string>
+    <string name="choose_pic">选择图片</string>
+    <string name="see_large_pic">查看大图</string>
+    <string name="click_choose_pic">点击选择图片</string>
+    <string name="please_add_pic">请添加图片</string>
+    <string name="copy">复制</string>
+    <string name="add_pic">添加一张图片</string>
+
     <!--我的收藏-->
     <string name="favorite_tip">长按复制链接\n左滑右滑删除</string>
+    <string name="filter">筛选</string>
+
 
 </resources>
