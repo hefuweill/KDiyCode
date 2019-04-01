@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.view.View
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
 import android.view.Gravity
 import android.view.View.MeasureSpec
@@ -41,12 +42,12 @@ class FavoriteGuideDialog(private val ctx: Context, val view: View): Dialog(ctx)
     }
 
     private fun getViewBitmap(view: View): Bitmap {
-        val widthSpec = MeasureSpec.makeMeasureSpec(view.width, MeasureSpec.EXACTLY)
-        val heightSpec = MeasureSpec.makeMeasureSpec(view.height, MeasureSpec.EXACTLY)
-        view.measure(widthSpec, heightSpec)
-        view.layout(0, 0, view.width, view.height)
-        view.buildDrawingCache(false)
-        return view.getDrawingCache(false)
+        val width = view.width
+        val height = view.height
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val c = Canvas(bitmap)
+        view.draw(c)
+        return bitmap
     }
 
     private fun getStatusBarHeight(): Int {

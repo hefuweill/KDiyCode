@@ -1,6 +1,7 @@
 package com.hefuwei.kdiycode.util
 
 import android.annotation.SuppressLint
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.preference.PreferenceManager
@@ -8,7 +9,9 @@ import android.util.Log
 import android.widget.Toast
 import com.hefuwei.kdiycode.BuildConfig
 import com.hefuwei.kdiycode.DiyCode
+import com.hefuwei.kdiycode.DiyCodeApplication
 import com.hefuwei.kdiycode.Global
+import java.io.File
 import java.net.URL
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -157,6 +160,16 @@ class LogUtils {
     }
 }
 
+class FileUtils {
+
+    companion object {
+        fun getCacheDir(): File {
+            val externalCacheDir = DiyCode.app.externalCacheDir
+            return externalCacheDir ?: DiyCode.app.cacheDir
+        }
+    }
+}
+
 class UIUtils {
 
     companion object {
@@ -169,9 +182,10 @@ class UIUtils {
 
         fun getColor(resId: Int) = DiyCode.app.resources.getColor(resId)
 
+        fun getVersion() = DiyCode.app.packageManager.getPackageInfo(DiyCode.app.packageName, 0).versionCode
+
         fun runOnUIThread(runnable: Runnable) {
             if (Looper.getMainLooper() != Looper.myLooper()) {
-                // sub thread
                 mainH.post(runnable)
             } else {
                 runnable.run()

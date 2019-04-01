@@ -14,6 +14,7 @@ class Global {
         const val CLIENT_ID = "89d9ee3a"
         const val CLIENT_SECRET = "2244a416d0a2fe9b8f73b3823cf9d7312f7c3ea6bc5233e933fd245512515803"
         const val REGISTER_URL = "https://www.diycode.cc/account/sign_up"
+        const val CACHE_MAX_SIZE = 100 * 1024 * 1024L
     }
 }
 
@@ -37,6 +38,7 @@ class Main {
         val TABS = arrayOf(UIUtils.getString(R.string.sites), UIUtils.getString(R.string.news),
                 UIUtils.getString(R.string.topics))
         const val PAGE_SIZE = 20
+        const val SITES = "sites"
     }
 }
 
